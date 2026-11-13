@@ -18,6 +18,22 @@
 
 ---
 
+## 🌊 动态融合系列（新）
+
+在静态变身的基础上更进一步：**锁屏本身是动态的**（VideoCAML 帧动画），同时保留解锁变身——滑动解锁时，第二状态图层照样以弹簧动画淡入。两种机制第一次合进同一个壁纸包。
+
+| 壁纸 | 文件 | 🔒 锁屏 | 🔓 解锁后 | 安装 |
+| --- | --- | --- | --- | --- |
+| 🪼 深海水母·醒 | `Jellyfish-Awake-Video.tendies` | 闭眼漂浮的少女，气泡缓缓上浮（12 秒循环动态） | 睁开眼睛，略带微笑 | **Gester** |
+
+> 📥 这个包约 45 MB，超过了仓库单文件上限，放在 [**Releases**](https://github.com/xxzhil/unlock-tendies/releases/tag/jellyfish-awake-v1) 里：[点此下载 Jellyfish-Awake-Video.tendies](https://github.com/xxzhil/unlock-tendies/releases/download/jellyfish-awake-v1/Jellyfish-Awake-Video.tendies)
+>
+> ⚠️ 融合系列请用 **Gester** 安装（和上面 7 张相反）——它走的是 VideoCAML 描述符路线。下载后分享到 Gester 导入应用，再到壁纸图库里选用即可，不需要再单独配主屏图片，一个包搞定。
+>
+> 真机实测可用（iPhone 16e · iOS 27.2 beta，2026-11-13）。
+
+---
+
 ## 📦 壁纸列表
 
 | 壁纸 | 文件 | 🔒 锁屏 | 🔓 解锁后 |
@@ -46,6 +62,10 @@
 
 ![预览二组](previews/batch-2.jpg)
 
+**深海水母·醒（动态融合：左锁屏闭眼 · 右解锁后睁眼微笑）**
+
+![深海水母](previews/jellyfish.jpg)
+
 ---
 
 ## 📲 安装方法
@@ -66,6 +86,7 @@
 - 上层 Floating 图层放第二状态全屏图，按状态设透明度（Locked 0 / Unlock 1 / Sleep 0）
 - 状态切换使用 `CASpringAnimation`（damping 50 · mass 2 · stiffness 300 · 0.8s），由 PosterBoard 在解锁手势期间驱动
 - 画面为 AI 生成的一对同构图素材，分辨率 1206 × 2622
+- **动态融合系列**的配方不同：Background 是 VideoCAML 帧动画（144 帧 JPG，12 秒无缝循环），Floating 图层改放第二状态全屏图并写入同样的状态机（透明度 Locked 0 / Unlock 1 / Sleep 0 + 弹簧过渡），因此锁屏保留动态、解锁依然变身
 
 ---
 
